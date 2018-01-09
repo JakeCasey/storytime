@@ -1,0 +1,17 @@
+/* Colors */
+.nav-bar {
+  background-color: #2A363B;
+  color: #E84A5F;
+  margin-bottom: 40px; }
+  .nav-bar .logo {
+    padding: 30px; }
+
+#input-box {
+  height: 400px;
+  width: 100%; }
+
+.text {
+  text-align: center; }
+
+button {
+  margin: 20px; }

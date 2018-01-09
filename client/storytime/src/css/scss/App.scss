@@ -1,0 +1,31 @@
+/* Colors */
+
+$slate : #2A363B;
+$red : #E84A5F;
+
+.nav-bar {
+ background-color: $slate;
+ color: $red;
+ margin-bottom: 40px;
+
+ .logo {
+  padding: 30px;
+ }
+
+
+
+}
+
+#input-box {
+ height: 400px;
+ width: 100%;
+}
+
+.text {
+ text-align: center;
+
+}
+
+button {
+  margin: 20px;
+}
