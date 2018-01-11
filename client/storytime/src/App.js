@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {BarLoader } from 'react-spinners';
-import logo from './resources/logo.svg';
 import './css/normalize.css';
 import './css/skeleton.css';
 import './css/App.css';
@@ -26,7 +25,7 @@ class App extends Component {
       'Matthew',
       'Salli'
      ],
-     voice: "",
+     voice: "Amy",
    }
    this._handleSubmit = this._handleSubmit.bind(this);
    this._updateText = this._updateText.bind(this);
@@ -63,7 +62,6 @@ class App extends Component {
 
   _handleSelect(e){
   e.preventDefault();
-  alert(e.target.value);
   var voice = e.target.value;
   this.setState({voice: voice});
 
@@ -84,7 +82,7 @@ class App extends Component {
           <textarea id="input-box" type="text" value={this.state.value} onChange={this._updateText} />
           <button className="button-primary" onClick={this._handleSubmit}>Submit</button>
 
-          <select value={this.state.value} onChange={this._handleSelect}>
+          <select value={this.state.voices[0]} onChange={this._handleSelect}>
           {this.state.voices.map((v, index) => {
            return (<option key={index} value={v}>{v}</option>)
 

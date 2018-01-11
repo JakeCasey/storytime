@@ -12,15 +12,6 @@ describe('download', () => {
 
   describe('/GET id', () => {
 
-    it('should get an id when one is sent to it', (done) => {
-      chai.request(app)
-      .get('/download/abc')
-      .end((err, res) => {
-        res.body.id.should.equal('abc');
-        done();
-
-      });
-    })
 
   });
 
