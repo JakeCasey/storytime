@@ -47,17 +47,15 @@ res.send(200);
 function _concatAudioFiles(idArray){
   //create the paths for our audio files
   var songs = idArray.map((s) => { return {id: './audio/'+ s.id + '.mp3', index: s.index} });
-  //this merge sorts the indices of the song id's
-  songs = mergeSort(songs);
+  //sorts the songs by index.
+  songs.sort((a,b) => { return a.index - b.index });
   finalSongs = [];
   songs.forEach((s) => { finalSongs.push(s.id) });
 
   var newId = shortid.generate();
-  console.log(finalSongs);
   audioconcat(finalSongs)
    .concat('./audio/' + newId + '.mp3')
    .on('end',(output) => {
-    console.log('job done')
     finalSongs.forEach((s)=> {
 
       fs.unlink(s)
@@ -66,42 +64,6 @@ function _concatAudioFiles(idArray){
     return newId;
 
    });
-
- function mergeSort (arr) {
-  if (arr.length === 1) {
-    // return once we hit an array with a single item
-    return arr
-  }
-
-  const middle = Math.floor(arr.length / 2) // get the middle item of the array rounded down
-  const left = arr.slice(0, middle) // items on the left side
-  const right = arr.slice(middle) // items on the right side
-
-  return merge(
-    mergeSort(left),
-    mergeSort(right)
-  )
-}
-
-// compare the arrays item by item and return the concatenated result
-function merge (left, right) {
-  let result = []
-  let indexLeft = 0
-  let indexRight = 0
-
-  while (indexLeft < left.length && indexRight < right.length) {
-    if (left[indexLeft].index < right[indexRight].index) {
-      result.push(left[indexLeft])
-      indexLeft++
-    } else {
-      result.push(right[indexRight])
-      indexRight++
-    }
-  }
-
-  return result.concat(left.slice(indexLeft)).concat(right.slice(indexRight))
-}
-
 
 
 }
@@ -170,8 +132,6 @@ var id = shortid.generate();
                   return err;
                 }
 
-               //successful save of file.
-              console.log('file saved');
 
               //pass the index of the string and the text in an object {text: string, index: integer}
               //reconstruct array of id's for sorting and then use in audioconcat
